@@ -31,9 +31,17 @@ public class ExecutorServiceExample {
 //        ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor(); // tek bir thread olusturur
 //        ScheduledExecutorService executor = Executors.newScheduledThreadPool(3); // belirli sayida thread olusturur
 
-//        executor.schedule(new ExecutorImplements(1), 1, TimeUnit.SECONDS);
-//        executor.schedule(new ExecutorImplements(50), 1, TimeUnit.SECONDS);
-//        executor.schedule(new ExecutorImplements(100), 1, TimeUnit.SECONDS);
+//        executor.schedule(new RunnableImplements(1), 1, TimeUnit.SECONDS); //Runnable kullanilirsa geriye veri alinamaz
+//        ScheduledFuture<Integer> future2 = executor.schedule(new CallableImplements(50), 1, TimeUnit.SECONDS); //Callable kullanilirsa geriye veri alinabilir
+//        ScheduledFuture<Integer> future3 = executor.schedule(new CallableImplements(100), 1, TimeUnit.SECONDS);
+//        System.out.println("result2: " + future2.get());
+//        System.out.println("result3: " + future3.get());
+
+//        ScheduledFuture<?> future4 = executor.scheduleAtFixedRate(new RunnableImplements(100), 1,3, TimeUnit.SECONDS);
+//        executor.schedule(() -> {
+//            future4.cancel(true);
+//            executor.shutdown();
+//        }, 10, TimeUnit.SECONDS); //10 saniye sonra sonlandırılıyor
 
         executor.shutdown();
     }
